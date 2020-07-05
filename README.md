@@ -8,7 +8,7 @@ If you want to save, the logs to a file, use `{ save: true }`.
 It will default save to `./logs.log`.
 Otherwise, you can specify the path in options:
 ```javascript 
-const logger = new Logger("test.js", { save: true, path: "./logs.log" });
+const logger = new Logger({ label: "myscript.js", save: false, path: "./logs.log" });
 ```
 It will save with timestamps in CSV format.
 

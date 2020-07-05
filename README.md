@@ -3,10 +3,16 @@
 A simple logger utility.
 
 choose options:
-If you just input `save: true`, it will default save to `./logs.log`.
+If you just input
+```javascript 
+save: true
+```
+it will default save to `./logs.log`.
 
 Otherwise, you can specify the path in options:
-`{ save: true, path: "./logs/mylog.log" }`
+```javascript 
+{ save: true, path: "./logs/mylog.log" }
+```
 
 ```javascript
 const Logger = require("./index.js");

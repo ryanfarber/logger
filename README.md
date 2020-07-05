@@ -2,7 +2,8 @@
 
 A simple logging utility with a save function.
 
-### Options
+### Setup
+The first parameter takes a name or a label that will prefix the log.  Usually it's best to just use the name of whatever script is running the logger.
 If you want to save, the logs to a file, use `{ save: true }`.
 It will default save to `./logs.log`.
 Otherwise, you can specify the path in options:
@@ -18,16 +19,16 @@ If you want to import it to a spreadsheet, just change the extension `.log` to `
 ### Example
 ```javascript
 const Logger = require("./index.js");
-const logger = new Logger("test.js", { save: false, path: "./logs.log" });
+const logger = new Logger("myscript.js", { save: false, path: "./logs.log" });
 
 logger.log("hello world")
-// (test.js) hello world
+// (myscript.js) hello world
 
 logger.error("hello error")
-// (test.js) ERROR hello error
+// (myscript.js) ERROR hello error
 
 logger.warn("hello warning")
-// (test.js) WARN hello warning
+// (myscript.js) WARN hello warning
 ```
 
 ### Saved Output

@@ -1,8 +1,5 @@
-# rf-logger
+// test.js
 
-A simple logger utility.
-
-```javascript
 const Logger = require("./index.js");
 const logger = new Logger("test.js", { save: false, path: "./logs.csv" });
 
@@ -14,5 +11,3 @@ logger.error("hello error")
 
 logger.warn("hello warning")
 // (test.js) WARN hello warning
-```
- 

@@ -3,40 +3,37 @@
 const timestamp = require("time-stamp")
 const fs = require("fs")
 
-
 class Logger {
-	constructor(filename, settings) {
-		this.settings = settings || {}
-		let save = this.settings.save || false
-		let path = this.settings.path || "./logs.log"
-
-		var ts = timestamp("YYMMDD HH:mm:ss.ms")
-		var logFilename = `(${filename})`
-		this.name = "(Logger)"
+	constructor(settings) {
+		settings = settings || {};
+		let label = settings.label || "logger"
+		let save = settings.save || false;
+		let path = settings.path || "./logs.log";
+		let ts = timestamp("YYMMDD HH:mm:ss.ms");
+		let logLabel = `(${label})`
 
 		this.log = (input) => {
-			console.log(logFilename, input)
-			if (save) saveLog(filename, "log", input)
+			console.log(logLabel, input)
+			if (save) saveLog(label, "log", input)
 		};
 		this.error = (input) => {
-			console.error(logFilename, "ERROR", input)
-			if (save) saveLog(filename, "error", input)
+			console.error(logLabel, "ERROR", input)
+			if (save) saveLog(label, "error", input)
 		};
 		this.warn = (input) => {
-			console.error(logFilename, "WARN", input)
-			if (save) saveLog(filename, "warn", input)
+			console.error(logLabel, "WARN", input)
+			if (save) saveLog(label, "warn", input)
 		};
 
-		function saveLog(filename, logType, input) {
-			let obj = `${ts}, ${filename}, ${logType}, "${input}"\n`
+		function saveLog(label, logType, input) {
+			let obj = `${ts}, "${label}", ${logType}, "${input}"\n`;
 			fs.appendFile(path, obj, function(error) {
 				if (error) {
-					console.error(this.name, "error saving log", error);
+					console.error("(logger) error saving log", error);
 				};
 			});
 		};
-
-	}
+	};
 };
 
 module.exports = Logger

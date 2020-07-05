@@ -1,7 +1,7 @@
 // test.js
 
 const Logger = require("./index.js");
-const logger = new Logger("test.js", { save: false, path: "./logs.log" });
+const logger = new Logger({label: "test.js", save: true});
 
 logger.log("hello world")
 // (test.js) hello world

@@ -19,7 +19,7 @@ If you want to import it to a spreadsheet, just change the extension `.log` to `
 ### Example
 ```javascript
 const Logger = require("./index.js");
-const logger = new Logger("myscript.js", { save: false, path: "./logs.log" });
+const logger = new Logger({ label: "myscript.js", save: false, path: "./logs.log" });
 
 logger.log("hello world")
 // (myscript.js) hello world

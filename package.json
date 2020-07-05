@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/ryanfarber/rf-logger/issues"
   },
-  "homepage": "https://github.com/ryanfarber/rf-logger#readme"
+  "homepage": "https://github.com/ryanfarber/rf-logger#readme",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }

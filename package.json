@@ -1,5 +1,5 @@
 {
-  "name": "rf-logger",
+  "name": "@surfingpikachu/rf-logger",
   "version": "1.0.0",
   "description": "A simple logging utility with a save function.",
   "main": "index.js",
@@ -19,6 +19,5 @@
   "bugs": {
     "url": "https://github.com/ryanfarber/rf-logger/issues"
   },
-  "homepage": "https://github.com/ryanfarber/rf-logger#readme",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "homepage": "https://github.com/ryanfarber/rf-logger#readme"
 }

@@ -1,6 +1,6 @@
 # rf-logger
 
-A simple logger utility.
+A simple logger utility with a save function.
 
 ### Options
 If you want to save, the logs to a file, use `{ save: true }`.
@@ -9,7 +9,7 @@ Otherwise, you can specify the path in options:
 ```javascript 
 const logger = new Logger("test.js", { save: true, path: "./logs.log" });
 ```
-
+It will save with timestamps in CSV format.  If you want to import it to a spreadsheet, just change the extension `.log` to `.csv`.
 
 ### Example
 ```javascript

@@ -7,7 +7,7 @@ const fs = require("fs")
 function Logger(filename, settings) {
 	this.settings = settings || {}
 	let save = this.settings.save || false
-	let path = this.settings.path || "./logs.csv"
+	let path = this.settings.path || "./logs.log"
 
 	var ts = timestamp("YYMMDD HH:mm:ss.ms")
 	logFilename = `(${filename})`

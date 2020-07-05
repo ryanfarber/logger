@@ -14,18 +14,15 @@ function Logger(filename, settings) {
 	this.name = "(Logger)"
 
 	this.log = (input) => {
-		let output = `${logFilename} ${input}`
-		console.log(output)
+		console.log(logFilename, input)
 		if (save) saveLog(filename, "log", input)
 	};
 	this.error = (input) => {
-		let output = `${logFilename} ERROR ${input}`
-		console.error(output)
+		console.error(logFilename, "ERROR", input)
 		if (save) saveLog(filename, "error", input)
 	};
 	this.warn = (input) => {
-		let output = `${logFilename} WARN ${input}`
-		console.error(output)
+		console.error(logFilename, "WARN", input)
 		if (save) saveLog(filename, "warn", input)
 	};
 
@@ -42,6 +39,3 @@ function Logger(filename, settings) {
 }
 
 module.exports = Logger
-
-
-// console.log(ts)

@@ -1,6 +1,6 @@
 {
   "name": "@surfingpikachu/rf-logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A simple logging utility with a save function.",
   "main": "index.js",
   "dependencies": {

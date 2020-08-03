@@ -16,25 +16,42 @@ Timestamp format: `YYMMDD HH:mm:ss.ms`
 
 If you want to import it to a spreadsheet, just change the extension `.log` to `.csv`.
 
+### Custom Log Name
+You can add a custom log name by adding it to settings. 
+```javascript 
+const logger = new Logger({ label: "myscript.js", customLog: "fatality"});
+
+logger.custom("this might be bad")
+// (myscript.js) FATALITY this might be bad
+```
+
 ### Example
 ```javascript
 const Logger = require("./index.js");
-const logger = new Logger({ label: "myscript.js", save: false, path: "./logs.log" });
+const logger = new Logger({ label: "myscript.js", save: false, path: "./logs.log", customLog: "lol" });
 
 logger.log("hello world")
-// (myscript.js) hello world
+// (myscript.js) hello 
+
+logger.info("hello info")
+// (test.js) hello world
 
 logger.error("hello error")
 // (myscript.js) ERROR hello error
 
 logger.warn("hello warning")
 // (myscript.js) WARN hello warning
+
+logger.custom("hello custom")
+// (myscript.js) LOL hello custom
 ```
 
 ### Saved Output
 ```
-200705 03:51:16.473, test.js, log, "hello world"
-200705 03:51:16.473, test.js, error, "hello error"
-200705 03:51:16.473, test.js, warn, "hello warning"
+200803 00:16:54.436, "test.js", log, "hello world"
+200803 00:16:54.436, "test.js", info, "hello info"
+200803 00:16:54.436, "test.js", error, "hello error"
+200803 00:16:54.436, "test.js", warn, "hello warning"
+200803 00:16:54.436, "test.js", LOL, "hello custom"
 ```
  

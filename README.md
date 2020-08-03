@@ -28,7 +28,7 @@ logger.custom("this might be bad")
 ### Example
 ```javascript
 const Logger = require("./index.js");
-const logger = new Logger({ label: "myscript.js", save: false, path: "./logs.log", customLog: "lol" });
+const logger = new Logger({ label: "myscript.js", save: false, path: "./logs.log", customLog: "fatality" });
 
 logger.log("hello world")
 // (myscript.js) hello 
@@ -36,14 +36,14 @@ logger.log("hello world")
 logger.info("hello info")
 // (test.js) hello world
 
-logger.error("hello error")
-// (myscript.js) ERROR hello error
-
 logger.warn("hello warning")
 // (myscript.js) WARN hello warning
 
+logger.error("hello error")
+// (myscript.js) ERROR hello error
+
 logger.custom("hello custom")
-// (myscript.js) LOL hello custom
+// (myscript.js) FATALITY hello custom
 ```
 
 ### Saved Output
@@ -52,6 +52,6 @@ logger.custom("hello custom")
 200803 00:16:54.436, "test.js", info, "hello info"
 200803 00:16:54.436, "test.js", error, "hello error"
 200803 00:16:54.436, "test.js", warn, "hello warning"
-200803 00:16:54.436, "test.js", LOL, "hello custom"
+200803 00:16:54.436, "test.js", fatality, "hello custom"
 ```
  

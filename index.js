@@ -36,7 +36,7 @@ class Logger {
 		};
 		this.custom = (input) => {
 			console.log(logLabel, custom, input)
-			if (save) saveLog(label, custom, input)
+			if (save) saveLog(label, custom.toLowerCase(), input)
 		}
 
 		function saveLog(label, logType, input) {

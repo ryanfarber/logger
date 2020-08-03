@@ -1,53 +1,45 @@
-// index.js
+// index2.js
+const fs = require("fs");
+const timestamp = require("time-stamp");
+const util = require("util")
 
-const timestamp = require("time-stamp")
-const fs = require("fs")
+function Logger(settings = {}) {
 
-class Logger {
-	constructor(settings) {
-		settings = settings || {};
-		let label = settings.label || "logger"
-		var custom
-		if (!settings.customLog) {
-			custom = "CUSTOM"
+	// setup
+	var filename = settings.filename || "logger";
+	var filenameFormat = `(${filename})`
+	var saveLog = settings.save || false
+	var saveLogPath = settings.path || "./logs.log"
+	let ts = timestamp("YYMMDD HH:mm:ss.ms");
+
+	// log methods
+	this.log = (input) => output(input, "log");
+	this.info = (input) => output(input, "info");
+	this.warn = (input) => output(input, "warn");
+	this.error = (input) => output(input, "error");
+
+	// functions
+	function output(input, type) {
+		if (typeof input ==! 'string') {
+				input = util.inspect(input, { showHidden: true, depth: null });
+			};
+		if (type == "log") {
+			console.log(filenameFormat, input);
 		} else {
-			custom = settings.customLog.toUpperCase();
-		}
-		let save = settings.save || false;
-		let path = settings.path || "./logs.log";
-		let ts = timestamp("YYMMDD HH:mm:ss.ms");
-		let logLabel = `(${label})`
+			console[type](filenameFormat, type.toUpperCase(), input);
+		};
 
-		this.log = (input) => {
-			console.log(logLabel, input)
-			if (save) saveLog(label, "log", input)
-		};
-		this.info = (input) => {
-			console.info(logLabel,"INFO", input)
-			if (save) saveLog(label, "info", input)
-		};
-		this.error = (input) => {
-			console.error(logLabel, "ERROR", input)
-			if (save) saveLog(label, "error", input)
-		};
-		this.warn = (input) => {
-			console.warn(logLabel, "WARN", input)
-			if (save) saveLog(label, "warn", input)
-		};
-		this.custom = (input) => {
-			console.log(logLabel, custom, input)
-			if (save) saveLog(label, custom.toLowerCase(), input)
-		}
-
-		function saveLog(label, logType, input) {
-			let obj = `${ts}, "${label}", ${logType}, "${input}"\n`;
-			fs.appendFile(path, obj, function(error) {
-				if (error) {
-					console.error("(logger) error saving log", error);
-				};
-			});
-		};
+		if (saveLog) save(input, type);
 	};
-};
+
+	function save(input, type) {
+		let obj = `${ts}, "${filename}", ${type}, "${input}"\n`;
+		fs.appendFile(saveLogPath, obj, function(error) {
+			if (error) {
+				console.error("(logger) error saving log", error);
+			};
+		});
+	};
+}
 
 module.exports = Logger

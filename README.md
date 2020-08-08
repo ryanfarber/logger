@@ -48,10 +48,10 @@ logger.custom("hello custom")
 
 ### Saved Output
 ```
-200803 00:16:54.436, "test.js", log, "hello world"
-200803 00:16:54.436, "test.js", info, "hello info"
-200803 00:16:54.436, "test.js", error, "hello error"
-200803 00:16:54.436, "test.js", warn, "hello warning"
-200803 00:16:54.436, "test.js", fatality, "hello custom"
+200803 00:16:54.436, "myscript.js", log, "hello world"
+200803 00:16:54.436, "myscript.js", info, "hello info"
+200803 00:16:54.436, "myscript.js", error, "hello error"
+200803 00:16:54.436, "myscript.js", warn, "hello warning"
+200803 00:16:54.436, "myscript.js", fatality, "hello custom"
 ```
  

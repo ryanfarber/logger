@@ -8,7 +8,7 @@ If you want to save, the logs to a file, use `{ save: true }`.
 It will default save to `./logs.log`.
 Otherwise, you can specify the path in options:
 ```javascript 
-const logger = new Logger({ label: "myscript.js", save: false, path: "./logs.log" });
+const logger = new Logger({ filename: "myscript.js", save: false, path: "./logs.log" });
 ```
 It will save with timestamps in CSV format.
 
@@ -19,7 +19,7 @@ If you want to import it to a spreadsheet, just change the extension `.log` to `
 ### Custom Log Name
 You can add a custom log name by adding it to settings. 
 ```javascript 
-const logger = new Logger({ label: "myscript.js", customLog: "fatality"});
+const logger = new Logger({ filename: "myscript.js", customLog: "fatality"});
 
 logger.custom("this might be bad")
 // (myscript.js) FATALITY this might be bad
@@ -28,7 +28,7 @@ logger.custom("this might be bad")
 ### Example
 ```javascript
 const Logger = require("./index.js");
-const logger = new Logger({ label: "myscript.js", save: false, path: "./logs.log", customLog: "fatality" });
+const logger = new Logger({ filename: "myscript.js", save: false, path: "./logs.log", customLog: "fatality" });
 
 logger.log("hello world")
 // (myscript.js) hello 

@@ -31,10 +31,10 @@ const Logger = require("./index.js");
 const logger = new Logger({ filename: "myscript.js", save: false, path: "./logs.log", customLog: "fatality" });
 
 logger.log("hello world")
-// (myscript.js) hello 
+// (myscript.js) hello world 
 
 logger.info("hello info")
-// (test.js) hello world
+// (myscript.js) INFO hello info
 
 logger.warn("hello warning")
 // (myscript.js) WARN hello warning

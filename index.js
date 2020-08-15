@@ -17,6 +17,7 @@ function Logger(settings = {}) {
 	this.info = (input) => output(input, "info");
 	this.warn = (input) => output(input, "warn");
 	this.error = (input) => output(input, "error");
+	this.debug = (input) => output(input, "debug");
 
 	// functions
 	function output(input, type) {
@@ -26,7 +27,7 @@ function Logger(settings = {}) {
 		if (type == "log") {
 			console.log(filenameFormat, input);
 		} else {
-			console[type](filenameFormat, type.toUpperCase(), input);
+			console[type](filenameFormat, `<${type.toUpperCase()}>`, input);
 		};
 
 		if (saveLog) save(input, type);

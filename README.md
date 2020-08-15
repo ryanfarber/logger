@@ -41,16 +41,19 @@ logger.log("hello world")
 // (myscript.js) hello world 
 
 logger.info("hello info")
-// (myscript.js) INFO hello info
+// (myscript.js) <INFO> hello info
 
 logger.warn("hello warning")
-// (myscript.js) WARN hello warning
+// (myscript.js) <WARN> hello warning
 
 logger.error("hello error")
-// (myscript.js) ERROR hello error
+// (myscript.js) <ERROR> hello error
+
+logger.debug("hello debug")
+// (myscript.js) <DEBUG> hello debug
 
 logger.custom("hello custom")
-// (myscript.js) FATALITY hello custom
+// (myscript.js) <FATALITY> hello custom
 ```
 
 ### Saved Output

@@ -1,5 +1,6 @@
 // index2.js
 const fs = require("fs");
+const path = require("path")
 const timestamp = require("time-stamp");
 const util = require("util")
 

@@ -1,5 +1,5 @@
 {
-  "name": "@surfingpikachu/rf-logger",
+  "name": "rf-logger",
   "version": "2.1.0",
   "description": "A simple logging utility with a save function.",
   "main": "index.js",

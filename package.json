@@ -4,9 +4,9 @@
   "description": "A simple logging utility with a save function.",
   "main": "index.js",
   "dependencies": {
+    "chalk": "^4.1.2",
     "time-stamp": "^2.2.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "node test.js"
   },

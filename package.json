@@ -1,6 +1,6 @@
 {
   "name": "rf-logger",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "A simple logging utility with a save function.",
   "main": "index.js",
   "dependencies": {

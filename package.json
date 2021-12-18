@@ -1,0 +1,29 @@
+{
+  "name": "@surfingpikachu/logger",
+  "version": "1.0.0",
+  "description": "simple logger",
+  "main": "index.js",
+  "dependencies": {
+    "color-convert": "^2.0.1",
+    "ansi-styles": "^4.3.0",
+    "color-name": "^1.1.4",
+    "chalk": "^4.1.2",
+    "has-flag": "^4.0.0",
+    "time-stamp": "^2.2.0",
+    "supports-color": "^7.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node logger.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanfarber/logger.git"
+  },
+  "author": "ryan forever",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanfarber/logger/issues"
+  },
+  "homepage": "https://github.com/ryanfarber/logger#readme"
+}

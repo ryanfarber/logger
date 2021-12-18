@@ -1,5 +1,5 @@
 {
-  "name": "@surfingpikachu/logger",
+  "name": "@ryanforever/logger",
   "version": "4.0.2",
   "description": "simple logger",
   "main": "index.js",
@@ -24,5 +24,6 @@
   "bugs": {
     "url": "https://github.com/ryanfarber/logger/issues"
   },
-  "homepage": "https://github.com/ryanfarber/logger#readme"
+  "homepage": "https://github.com/ryanfarber/logger#readme",
+  "devDependencies": {}
 }

@@ -1,4 +1,4 @@
-# rf-logger
+# logger
 
 A simple logging utility with a save function.
 

@@ -28,7 +28,7 @@ class Logger {
 		this.logPath = config.logPath
 		this.types = {
 			log: chalk.bold.white("  LOG"),
-			info: chalk.bold.cyan(" INFO"),
+			info: chalk.bold.dim(" INFO"),
 			warn: chalk.bold.red(" WARN"),
 			error: chalk.bold.red("ERROR"),
 			debug: chalk.bold.dim("DEBUG"),
@@ -64,9 +64,16 @@ class Logger {
 	info() {
 		this.type = "info";
 		this.args = Array.prototype.slice.call(arguments);
-		this.argsDisplay = this.format(this.type, arguments)
-
-		console[this.type].apply(console, this.argsDisplay);
+		let args = (Object.values(arguments))
+		
+		if (args.length == 1 && typeof args[0] === "string") {
+			this.typeDisplay = this.types[this.type]
+			this.argsDisplay = this.format(this.type, args[0])
+			console[this.type](this.typeDisplay, this.prefixDisplay, chalk.dim(args[0]));
+		} else {
+			this.argsDisplay = this.format(this.type, arguments)
+			console[this.type].apply(console, this.argsDisplay);
+		}
 
 		if (this.logPath) save(this.logPath, this.prefix, this.type, this.args);
 	}

@@ -1,6 +1,6 @@
 {
   "name": "@ryanforever/logger",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "simple logger",
   "main": "index.js",
   "dependencies": {

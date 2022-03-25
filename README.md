@@ -12,61 +12,36 @@ logger.log("hello world")
 // LOG @ script: hello world
 ```
 
-### Setup
-The first parameter takes a name or a label that will prefix the log.  Usually it's best to just use the name of whatever script is running the logger.
-If you want to save, the logs to a file, use
 
-`{ save: true }`.
-
-It will default save to:
-
-`./logs.log`.
-
-Otherwise, you can specify the path in options:
-
-```javascript 
-const logger = new Logger({ filename: "myscript.js", save: false, path: "./logs.log" });
-```
-It will save with timestamps in CSV format.
-
-Timestamp format: `YYMMDD HH:mm:ss.ms`
-
-If you want to import it to a spreadsheet, just change the extension `.log` to `.csv`.
-
-### Custom Log Name
-You can add a custom log name by adding it to settings. 
-```javascript 
-const logger = new Logger({ filename: "myscript.js", customLog: "fatality"});
-
-logger.custom("this might be bad")
-// (myscript.js) FATALITY this might be bad
-```
-
-### Example
+### usage
 ```javascript
-const Logger = require("./index.js");
-const logger = new Logger({ filename: "myscript.js", save: false, path: "./logs.log", customLog: "fatality" });
+// script.js
+
+const Logger = require("@ryanforever/logger")
+const logger = new Logger(__filename, {
+	debug: true,
+	save: true,
+	path: "./logs.log"
+})
 
 logger.log("hello world")
-// (myscript.js) hello world 
+//   LOG @ script: hello world goodbye
 
 logger.info("hello info")
-// (myscript.js) <INFO> hello info
+//  INFO @ script: hello info
 
 logger.warn("hello warning")
-// (myscript.js) <WARN> hello warning
+//  WARN @ script: hello warning
 
 logger.error("hello error")
-// (myscript.js) <ERROR> hello error
+// ERROR @ script: hello error
 
+// if debug is false or undefined in config, logger.debug will not show up
 logger.debug("hello debug")
-// (myscript.js) <DEBUG> hello debug
-
-logger.custom("hello custom")
-// (myscript.js) <FATALITY> hello custom
+// DEBUG @ script: hello debug
 ```
 
-### Saved Output
+### saved output
 ```
 200803 00:16:54.436, "myscript.js", log, "hello world"
 200803 00:16:54.436, "myscript.js", info, "hello info"

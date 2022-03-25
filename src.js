@@ -1,13 +1,12 @@
-// index.js
-// V2
+// src.js
 
-const fs = require("fs");
-const path = require("path");
-const timestamp = require("time-stamp");
-const util = require("util");
+const fs = require("fs")
+const path = require("path")
+const timestamp = require("time-stamp")
+const util = require("util")
 const chalk = require("chalk")
 
-var ts = timestamp("YYMMDD HH:mm:ss.ms");
+var ts = timestamp("YYMMDD HH:mm:ss.ms")
 
 class Logger {
 
@@ -20,7 +19,7 @@ class Logger {
 		// console.log(path.parse(prefix))
 		prefix = path.parse(prefix).name
 		this.prefix = prefix.toLowerCase().trim()
-		this.prefixDisplay = `${chalk.dim("@ ") + chalk.cyan.underline(prefix.trim()) + chalk.dim(":")}`;
+		this.prefixDisplay = `${chalk.dim("@ ") + chalk.cyan.underline(prefix.trim()) + chalk.dim(":")}`
 		if (this.simple) {
 			this.prefixDisplay = "|"
 		}
@@ -183,17 +182,17 @@ class Logger {
 		console.log(chalk.dim("––––––––––––––––––––––––––"), line)
 	}
 	
-};
+}
 
 function save(logPath, prefix, type, input) {
 	// input = JSON.stringify(input, null)
-	let obj = `${ts}, "${prefix}", ${type}, "${input}"\n`;
+	let obj = `${ts}, "${prefix}", ${type}, "${input}"\n`
 	fs.appendFile(logPath, obj, function(error) {
 		if (error) {
-			console.error("(logger) error saving log", error);
-		};
-	});
-};
+			console.error("(logger) error saving log", error)
+		}
+	})
+}
 
 
 module.exports = Logger

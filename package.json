@@ -1,6 +1,6 @@
 {
   "name": "@ryanforever/logger",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "simple logger",
   "main": "index.js",
   "dependencies": {
@@ -25,5 +25,11 @@
     "url": "https://github.com/ryanfarber/logger/issues"
   },
   "homepage": "https://github.com/ryanfarber/logger#readme",
-  "devDependencies": {}
+  "devDependencies": {},
+  "keywords": [
+    "logger",
+    "console",
+    "utility",
+    "log"
+  ]
 }

@@ -2,6 +2,16 @@
 
 A simple logging utility with a save function.
 
+```javascript
+// script.js
+
+const Logger = require("@ryanforever/logger");
+const logger = new Logger(__filename, {debug: false});
+
+logger.log("hello world")
+// LOG @ script: hello world
+```
+
 ### Setup
 The first parameter takes a name or a label that will prefix the log.  Usually it's best to just use the name of whatever script is running the logger.
 If you want to save, the logs to a file, use

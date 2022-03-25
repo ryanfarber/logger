@@ -13,7 +13,7 @@
     "time-stamp": "^2.2.0"
   },
   "scripts": {
-    "test": "node logger.test.js"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",

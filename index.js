@@ -1,3 +1,3 @@
 // index.js
 
-module.exports = require("./logger.js")
+module.exports = require("./src.js")

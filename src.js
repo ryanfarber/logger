@@ -150,7 +150,7 @@ class Logger {
 	}
 
 	time(label) {
-		if (!this._debug) return
+		// if (!this._debug) return
 		if (typeof label === "string" || label == undefined) {
 			let newLabel
 			if (!label) newLabel = `${this.performancePrefix}`
@@ -162,7 +162,7 @@ class Logger {
 	}
 
 	timeEnd(label) {
-		if (!this._debug) return
+		// if (!this._debug) return
 		if (typeof label === "string" || label == undefined) {
 			let newLabel
 			if (!label) newLabel = `${this.performancePrefix}`

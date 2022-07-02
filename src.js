@@ -14,29 +14,27 @@ class Logger {
 		// console.log(prefix)
 		this.simple = config.simple
 		this._debug = config.debug
+		let showName = config.showName
 		prefix = prefix || "logger"
 		if (typeof prefix !== "string") prefix = "logger"
 		// console.log(path.parse(prefix))
 		prefix = path.parse(prefix).name
 		this.prefix = prefix.toLowerCase().trim()
-		this.prefixDisplay = `${chalk.dim("@ ") + chalk.cyan.underline(prefix.trim()) + chalk.dim(":")}`
-		if (this.simple) {
-			this.prefixDisplay = "|"
-		}
-		if (true) {}
+		this.prefixDisplay = `${chalk.cyan.underline(prefix.trim())}`
+		
+		if (this.simple || showName) this.prefixDisplay = chalk.dim("|")
+
 		this.logPath = config.logPath
 		this.types = {
-			log: chalk.bold.white("  LOG"),
-			info: chalk.bold.dim(" INFO"),
-			warn: chalk.bold.red(" WARN"),
+			log: chalk.bold.white("LOG  "),
+			info: chalk.bold.cyan("INFO "),
+			warn: chalk.bold.yellow("WARN "),
 			error: chalk.bold.red("ERROR"),
-			debug: chalk.bold.dim("DEBUG"),
-			deprecated: chalk.bold.grey("DEPRECATED")
+			debug: chalk.bold.dim.white("DEBUG"),
+			deprecated: chalk.bold.red("DEPRECATED")
 		}
 		// this.prefix
 		this.performancePrefix = `${chalk.magenta.bold("SPEED")} ${chalk.dim("@ ") + chalk.cyan.underline(prefix.trim())}`
-
-	
 
 		this.format = function(type, args) {
 			let pre = `${this.types[type]} ${this.prefixDisplay}`
@@ -51,27 +49,27 @@ class Logger {
 	}
 
 	log() {
-		this.type = "log";
-		this.args = Array.prototype.slice.call(arguments);
+		this.type = "log"
+		this.args = Array.prototype.slice.call(arguments)
 		this.argsDisplay = this.format(this.type, arguments)
 
-		console[this.type].apply(console, this.argsDisplay);
+		console[this.type].apply(console, this.argsDisplay)
 
 		if (this.logPath) save(this.logPath, this.prefix, this.type, this.args);
 	}
 
 	info() {
-		this.type = "info";
-		this.args = Array.prototype.slice.call(arguments);
+		this.type = "info"
+		this.args = Array.prototype.slice.call(arguments)
 		let args = (Object.values(arguments))
 		
 		if (args.length == 1 && typeof args[0] === "string") {
 			this.typeDisplay = this.types[this.type]
 			this.argsDisplay = this.format(this.type, args[0])
-			console[this.type](this.typeDisplay, this.prefixDisplay, chalk.dim(args[0]));
+			console[this.type](this.typeDisplay, this.prefixDisplay, args[0])
 		} else {
 			this.argsDisplay = this.format(this.type, arguments)
-			console[this.type].apply(console, this.argsDisplay);
+			console[this.type].apply(console, this.argsDisplay)
 		}
 
 		if (this.logPath) save(this.logPath, this.prefix, this.type, this.args);
@@ -79,19 +77,19 @@ class Logger {
 
 	warn() {
 		this.type = "warn";
-		this.args = Array.prototype.slice.call(arguments);
+		this.args = Array.prototype.slice.call(arguments)
 		let args = (Object.values(arguments))
 		
 		if (args.length == 1 && typeof args[0] === "string") {
 			this.typeDisplay = this.types[this.type]
 			this.argsDisplay = this.format(this.type, args[0])
-			console[this.type](this.typeDisplay, this.prefixDisplay,chalk.red.bold(args[0]));
+			console[this.type](this.typeDisplay, this.prefixDisplay,chalk.yellow.bold(args[0]))
 		} else {
 			this.argsDisplay = this.format(this.type, arguments)
-			console[this.type].apply(console, this.argsDisplay);
+			console[this.type].apply(console, this.argsDisplay)
 		}
 
-		if (this.logPath) save(this.logPath, this.prefix, this.type, this.args);
+		if (this.logPath) save(this.logPath, this.prefix, this.type, this.args)
 	}
 
 	error() {
@@ -105,7 +103,7 @@ class Logger {
 			console[this.type](this.typeDisplay, this.prefixDisplay, chalk.red.bold(args[0]));
 		} else {
 			this.argsDisplay = this.format(this.type, arguments)
-			console[this.type].apply(console, this.argsDisplay);
+			console[this.type].apply(console, this.argsDisplay)
 		}
 
 		if (this.logPath) save(this.logPath, this.prefix, this.type, this.args);
@@ -116,7 +114,7 @@ class Logger {
 		if (!this._debug) return
 
 		this.type = "debug";
-		this.args = Array.prototype.slice.call(arguments);
+		this.args = Array.prototype.slice.call(arguments)
 		let args = (Object.values(arguments))
 		
 		if (args.length == 1 && typeof args[0] === "string") {
@@ -125,28 +123,28 @@ class Logger {
 			console[this.type](this.typeDisplay, this.prefixDisplay, chalk.dim(args[0]));
 		} else {
 			this.argsDisplay = this.format(this.type, arguments)
-			console[this.type].apply(console, this.argsDisplay);
+			console[this.type].apply(console, this.argsDisplay)
 		}
 
-		if (this.logPath) save(this.logPath, this.prefix, this.type, this.args);
+		if (this.logPath) save(this.logPath, this.prefix, this.type, this.args)
 
 	}
 
 	deprecated() {
-		this.type = "deprecated";
-		this.args = Array.prototype.slice.call(arguments);
+		this.type = "deprecated"
+		this.args = Array.prototype.slice.call(arguments)
 		let args = (Object.values(arguments))
 		
 		if (args.length == 1 && typeof args[0] === "string") {
 			this.typeDisplay = this.types[this.type]
 			this.argsDisplay = this.format(this.type, args[0])
-			console.log(this.typeDisplay, this.prefixDisplay, chalk.inverse(args[0]));
+			console.log(this.typeDisplay, this.prefixDisplay, chalk.inverse(args[0]))
 		} else {
 			this.argsDisplay = this.format(this.type, arguments)
-			console.log.apply(console, this.argsDisplay);
+			console.log.apply(console, this.argsDisplay)
 		}
 
-		if (this.logPath) save(this.logPath, this.prefix, this.type, this.args);
+		if (this.logPath) save(this.logPath, this.prefix, this.type, this.args)
 	}
 
 	time(label) {

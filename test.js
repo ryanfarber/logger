@@ -1,17 +1,10 @@
 // test.js
 
 
-const Logger = require("./src.js")
-const logger = new Logger(__filename, {debug: true, simple: false})
+const Logger = require("./index.js").v2
+const logger = new Logger("logger-test", {debug: true, style: 1})
 
 
-logger.time("performance")
-logger.log("hello world", "goodbye")
-logger.info("hello info")
-logger.warn("hello warning")
-logger.error("hello error")
-logger.debug("hello debug")
-logger.deprecated("hello depcrecated")
+logger._test("hello world")
 
-logger.timeEnd("performance")
-
+logger.space(2)

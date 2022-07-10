@@ -21,6 +21,7 @@ let nameStyles = [
 	(name) => `[${name}]`,
 	(name) => chalk.underline(name),
 	(name) => name,
+	(name) => name,
 	(name) => name
 ]
 
@@ -50,7 +51,7 @@ let types = new Map([
 function Logger(name, config = {}) {
 
 	this.name = name || "logger"
-	let styleTypes = [0, 1, 2, 3, 4]
+	let styleTypes = [0, 1, 2, 3, 4, 5]
 	let style = (config.style > -1) ? config.style : 1
 	const showName = config.showName || true
 	const debug = (config.debug == false) ? false : true
@@ -82,14 +83,14 @@ function Logger(name, config = {}) {
 
 	// START // performance start
 	this.start = function(label) {
-		label = this.name + " " + nameStyles[style](label)
+		label = styles.dim("[speed] " + this.name + "/" + label)
 		console.time(label)
 	}
 	this.time = this.start
 
 	// STOP // performance end
 	this.stop = function(label) {
-		label = this.name + " " + nameStyles[style](label)
+		label = styles.dim("[speed] " + this.name + "/" + label)
 		console.timeEnd(label)
 	}
 	this.end = this.stop
@@ -113,11 +114,11 @@ function Logger(name, config = {}) {
 
 	// TEST// test all functions
 	this._test = function(...args) {
-		this.start("test")
+		this.start("performance")
 		if (!debug) console.log("debug is off.")
 		this.types.forEach(type => this[type](...args))	
 		this.space()
-		this.stop("test")
+		this.stop("performance")
 		this.line()
 	}
 
@@ -148,6 +149,8 @@ function Logger(name, config = {}) {
 		} else if (style == 3) {
 			output = type + " " + name
 		} else if (style == 4) {
+			output = styles.bracket(color(type) + "/" + styles.name(name))
+		} else if (style == 5) {
 			output = color(type) + ":" + name
 		}
 		return output

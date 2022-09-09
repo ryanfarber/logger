@@ -54,7 +54,7 @@ function Logger(name, config = {}) {
 	let styleTypes = [0, 1, 2, 3, 4, 5]
 	let style = (config.style > -1) ? config.style : 1
 	const showName = config.showName || true
-	const debug = (config.debug == false) ? false : true
+	this._debug = (config.debug == false) ? false : true
 	const labels = config.labels ?? true
 	if (labels === false) style = 0
 
@@ -75,7 +75,7 @@ function Logger(name, config = {}) {
 		if (prefix) args.unshift(prefix)
 
 		if (type == "deprecated") console.log.apply(console, args)
-		else if (type == "debug" && debug == false) return
+		else if (type == "debug" && this._debug == false) return
 		else if (!console.hasOwnProperty(type)) return console.log(`"${type}" is not a console type`)
 		else console[type].apply(console, args)
 		// console[type](prefix, arguments)
@@ -115,7 +115,7 @@ function Logger(name, config = {}) {
 	// TEST// test all functions
 	this._test = function(...args) {
 		this.start("performance")
-		if (!debug) console.log("debug is off.")
+		if (!this._debug) console.log("debug is off.")
 		this.types.forEach(type => this[type](...args))	
 		this.space()
 		this.stop("performance")

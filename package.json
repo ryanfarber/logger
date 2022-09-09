@@ -1,6 +1,6 @@
 {
   "name": "@ryanforever/logger",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "simple logger",
   "main": "index.js",
   "dependencies": {
@@ -31,5 +31,6 @@
     "console",
     "utility",
     "log"
-  ]
+  ],
+  "files": ["src"]
 }

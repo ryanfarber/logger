@@ -13,7 +13,8 @@
     "time-stamp": "^2.2.0"
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "build": "npm version patch --no-git-tag-version && npm i && npm publish"
   },
   "repository": {
     "type": "git",

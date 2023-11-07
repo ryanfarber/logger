@@ -39,11 +39,11 @@ let colors = {
 }
 
 let types = new Map([
-	["log", {color: chalk.bold.hex(colors.white)}],
-	["info", {color: chalk.bold.hex(colors.lightgrey), highlight: chalk.hex(colors.lightgrey)}],
-	["warn", {color: chalk.bold.hex(colors.orange), highlight: chalk.hex(colors.orange)}],
-	["error", {color: chalk.bold.hex(colors.red), highlight: chalk.hex(colors.red)}],
-	["debug", {color: chalk.bold.hex(colors.darkgrey), highlight: chalk.hex(colors.darkgrey)}],
+	["log", {color: chalk.bold.hex(colors.white), display: "  log"}],
+	["info", {color: chalk.bold.hex(colors.lightgrey), highlight: chalk.hex(colors.lightgrey), display: " info"}],
+	["warn", {color: chalk.bold.hex(colors.orange), highlight: chalk.hex(colors.orange), display: " warn"}],
+	["error", {color: chalk.bold.hex(colors.red), highlight: chalk.hex(colors.red), display: "error"}],
+	["debug", {color: chalk.bold.hex(colors.darkgrey), highlight: chalk.hex(colors.darkgrey), display: "debug"}],
 	["deprecated", {color: chalk.bold.hex(colors.yellow), highlight: chalk.hex(colors.yellow)}],
 ])
 
@@ -128,8 +128,10 @@ function Logger(name, config = {}) {
 		let prefix
 		let name = this.name
 		let underline = chalk.underline
-		let {color} = types.get(type)
+		let {color, display} = types.get(type)
 		if (!color) color = (input) => input
+
+		if (display) type = display
 
 		// if (!color) color = function(...args) {return ...args}
 

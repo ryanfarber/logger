@@ -52,7 +52,7 @@ function Logger(name, config = {}) {
 
 	this.name = name || "logger"
 	let styleTypes = [0, 1, 2, 3, 4, 5, 6]
-	let style = (config.style > -1) ? config.style : 1
+	let style = (config.style > -1) ? config.style : 6
 	const showName = config.showName || true
 	this._debug = (config.debug == false) ? false : true
 	const labels = config.labels ?? true

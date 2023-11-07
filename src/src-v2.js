@@ -39,19 +39,19 @@ let colors = {
 }
 
 let types = new Map([
-	["log", {color: chalk.bold.hex(colors.white), display: "  log"}],
-	["info", {color: chalk.bold.hex(colors.lightgrey), highlight: chalk.hex(colors.lightgrey), display: " info"}],
-	["warn", {color: chalk.bold.hex(colors.orange), highlight: chalk.hex(colors.orange), display: " warn"}],
-	["error", {color: chalk.bold.hex(colors.red), highlight: chalk.hex(colors.red), display: "error"}],
-	["debug", {color: chalk.bold.hex(colors.darkgrey), highlight: chalk.hex(colors.darkgrey), display: "debug"}],
-	["deprecated", {color: chalk.bold.hex(colors.yellow), highlight: chalk.hex(colors.yellow)}],
+	["log", {color: chalk.bold.hex(colors.white), display: "  log", display2: "log  "}],
+	["info", {color: chalk.bold.hex(colors.lightgrey), highlight: chalk.hex(colors.lightgrey), display: " info", display2: "info "}],
+	["warn", {color: chalk.bold.hex(colors.orange), highlight: chalk.hex(colors.orange), display: " warn", display2: "warn "}],
+	["error", {color: chalk.bold.hex(colors.red), highlight: chalk.hex(colors.red), display: "error", display2: "error"}],
+	["debug", {color: chalk.bold.hex(colors.darkgrey), highlight: chalk.hex(colors.darkgrey), display: "debug", display2: "debug"}],
+	["deprecated", {color: chalk.bold.hex(colors.magenta), highlight: chalk.hex(colors.magenta)}],
 ])
 
 
 function Logger(name, config = {}) {
 
 	this.name = name || "logger"
-	let styleTypes = [0, 1, 2, 3, 4, 5]
+	let styleTypes = [0, 1, 2, 3, 4, 5, 6]
 	let style = (config.style > -1) ? config.style : 1
 	const showName = config.showName || true
 	this._debug = (config.debug == false) ? false : true
@@ -128,7 +128,7 @@ function Logger(name, config = {}) {
 		let prefix
 		let name = this.name
 		let underline = chalk.underline
-		let {color, display} = types.get(type)
+		let {color, display, display2} = types.get(type)
 		if (!color) color = (input) => input
 
 		if (display) type = display
@@ -151,10 +151,14 @@ function Logger(name, config = {}) {
 		} else if (style == 3) {
 			output = type + " " + name
 		} else if (style == 4) {
-			output = styles.bracket(color(type) + "/" + styles.name(name))
+			output = color(type) + "/" + styles.name(name) + " |"
 		} else if (style == 5) {
 			output = color(type) + ":" + name
-		}
+		} else if (style == 6) {
+			if (display2) type = display2
+			// type = color(type)
+			output = styles.name(`[${this.name}]`) + " " +color(type)
+		}  
 		return output
 	}
 

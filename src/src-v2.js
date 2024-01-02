@@ -51,8 +51,8 @@ let types = new Map([
 function Logger(name, config = {}) {
 
 	this.name = name || "logger"
-	let styleTypes = [0, 1, 2, 3, 4, 5, 6]
-	let style = (config.style > -1) ? config.style : 6
+	let styleTypes = [0, 1, 2, 3, 4, 5, 6, 7]
+	let style = (config.style > -1) ? config.style : 7
 	const showName = config.showName || true
 	this._debug = (config.debug == false) ? false : true
 	const labels = config.labels ?? true
@@ -158,6 +158,10 @@ function Logger(name, config = {}) {
 			if (display2) type = display2
 			// type = color(type)
 			output = styles.name(`[${this.name}]`) + " " +color(type)
+		} else if (style == 7) {
+			if (display2) type = display2
+			// type = color(type)
+			output = color(type) + " " + styles.name(`[${this.name}]`)
 		}  
 		return output
 	}
@@ -165,7 +169,7 @@ function Logger(name, config = {}) {
 }
 
 
-const logger = new Logger(__filename, {debug: true, style: 1})
+
 
 module.exports = Logger
 

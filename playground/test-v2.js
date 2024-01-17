@@ -11,4 +11,4 @@ const logger = new Logger(__filename, {usePapertrail: true, papertrailKey: proce
 
 console.log(logger)
 // logger.log("hey there ")
-logger.log("hey there ")
+logger.log("hey there")

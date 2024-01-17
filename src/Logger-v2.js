@@ -91,7 +91,12 @@ function Logger(name, config = {}) {
 		else if (!console.hasOwnProperty(type)) return console.log(`"${type}" is not a console type`)
 		else console[type].apply(console, args)
 
-		if (this.usePapertrail && papertrailKey) papertrail(papertrailKey, arguments[0])
+		let papertrailData = {
+			file: this.name,
+			level: type,
+			message: arguments[0]
+		}
+		if (this.usePapertrail && papertrailKey) papertrail(papertrailKey, papertrailData)
 	}
 
 	// START // performance start

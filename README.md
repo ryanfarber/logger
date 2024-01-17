@@ -1,46 +1,19 @@
 # logger
 
-A simple logging utility with a save function.
-
-```javascript
-// script.js
-
-const Logger = require("@ryanforever/logger");
-const logger = new Logger(__filename, {debug: false});
-
-logger.log("hello world")
-// LOG @ script: hello world
-```
-
+A simple logging utility
 
 ### usage
 ```javascript
-// script.js
-
 const Logger = require("@ryanforever/logger")
-const logger = new Logger(__filename, {
-	debug: true,
-	save: true,
-	path: "./logs.log"
-})
+const logger = new Logger(__filename, {debug: true,})
 
 logger.log("hello world")
-//   LOG @ script: hello world goodbye
-
 logger.info("hello info")
-//  INFO @ script: hello info
-
 logger.warn("hello warning")
-//  WARN @ script: hello warning
-
 logger.error("hello error")
-// ERROR @ script: hello error
-
-// if debug is false or undefined in config, logger.debug will not show up
 logger.debug("hello debug")
-// DEBUG @ script: hello debug
+logger.inspect({this: {is: {a: {deeply: {nested: "object"}}}}})
 ```
-
 
 ### use papertrail
 you can add logs to [Papertrail](https://papertrailapp.com)

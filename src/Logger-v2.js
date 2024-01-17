@@ -44,6 +44,7 @@ let types = new Map([
 	["warn", {color: chalk.bold.hex(colors.orange), highlight: chalk.hex(colors.orange), display: " warn", display2: "warn "}],
 	["error", {color: chalk.bold.hex(colors.red), highlight: chalk.hex(colors.red), display: "error", display2: "error"}],
 	["debug", {color: chalk.bold.hex(colors.darkgrey), highlight: chalk.hex(colors.darkgrey), display: "debug", display2: "debug"}],
+	["inspect", {}],
 	["deprecated", {color: chalk.bold.hex(colors.magenta), highlight: chalk.hex(colors.magenta)}],
 ])
 
@@ -55,14 +56,24 @@ function Logger(name, config = {}) {
 	let style = (config.style > -1) ? config.style : 7
 	const showName = config.showName || true
 	this._debug = (config.debug == false) ? false : true
+	this.usePapertrail = config.usePapertrail ?? false
 	const labels = config.labels ?? true
 	if (labels === false) style = 0
 
+	let inspectOptions = {
+		depth: 10,
+		maxArrayLength: null
+	}
+	const papertrailKey = config.papertrailKey
 
 	// if name is a filepath
 	if (this.name !== path.basename(this.name)) this.name = path.parse(this.name).name
-
+	if (this.usePapertrail && !papertrailKey) console.warn(`[logger] please enter your papertrailKey to use this feature`)
 	this.types = Array.from(types.keys())
+
+	let papertrail
+	if (this.usePapertrail && papertrailKey) papertrail = require("./papertrail.js")
+	else papertrail = function() {}
 	
 	// iterate thru types and create a logger
 	for (let type of Array.from(types.keys())) this[type] = function() {
@@ -76,9 +87,11 @@ function Logger(name, config = {}) {
 
 		if (type == "deprecated") console.log.apply(console, args)
 		else if (type == "debug" && this._debug == false) return
+		else if (type == "inspect") return console.log(util.inspect(arguments[0], inspectOptions))
 		else if (!console.hasOwnProperty(type)) return console.log(`"${type}" is not a console type`)
 		else console[type].apply(console, args)
-		// console[type](prefix, arguments)
+
+		if (this.usePapertrail && papertrailKey) papertrail(papertrailKey, arguments[0])
 	}
 
 	// START // performance start

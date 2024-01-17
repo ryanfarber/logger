@@ -14,7 +14,7 @@ logger1.deprecated("hello world")
 logger1.line()
 logger1.space()
 
-const logger2 = new Logger("test-logger")
+const logger2 = new Logger("test-logger", {debug: false})
 
 logger2.debug("hello world")
 logger2.log("hello world")

@@ -1,10 +1,11 @@
 {
   "name": "@ryanforever/logger",
-  "version": "5.0.4",
+  "version": "6.0.0",
   "description": "simple logger",
   "main": "index.js",
   "dependencies": {
     "ansi-styles": "^4.3.0",
+    "axios": "^1.6.5",
     "chalk": "^4.1.2",
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",
@@ -26,7 +27,9 @@
     "url": "https://github.com/ryanfarber/logger/issues"
   },
   "homepage": "https://github.com/ryanfarber/logger#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  },
   "keywords": [
     "logger",
     "console",

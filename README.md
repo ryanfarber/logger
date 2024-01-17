@@ -41,12 +41,13 @@ logger.debug("hello debug")
 // DEBUG @ script: hello debug
 ```
 
-### saved output
+
+### use papertrail
+you can add logs to [Papertrail](https://papertrailapp.com)
+```javascript
+const Logger = require("@ryanforever/logger")
+const logger = new Logger(__filename, {
+	usePapertrail: true,
+	papertrailKey: process.env.PAPERTRAIL_KEY
+})
 ```
-200803 00:16:54.436, "myscript.js", log, "hello world"
-200803 00:16:54.436, "myscript.js", info, "hello info"
-200803 00:16:54.436, "myscript.js", error, "hello error"
-200803 00:16:54.436, "myscript.js", warn, "hello warning"
-200803 00:16:54.436, "myscript.js", fatality, "hello custom"
-```
- 

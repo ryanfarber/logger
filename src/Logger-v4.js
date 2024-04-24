@@ -51,6 +51,8 @@ class Logger {
 
 				let args = Array.prototype.slice.call(arguments)
 				if (this.config.prefix) {
+					console.log(this)
+					
 					let prefix = parse(this.config.prefix)
 					if (style) prefix = style(prefix)
 					else prefix = styles.blue(prefix)

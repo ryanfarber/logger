@@ -29,7 +29,9 @@ let types = {
 
 
 let styles = [
-	`{level} [{name}] {data}`
+	`{level} [{name}] {data}`,
+	`{date} @ {name} [{level}]`
+
 ]
 
 
@@ -40,6 +42,9 @@ class Logger {
 
 		this.name = name || "logger"
 		this.types = Object.keys(types)
+		this.style = config.style
+		this.suffix = config.suffix ?? true
+		this.customSuffix = config.customSuffix
 		this.usePapertrail = config.usePapertrail ?? false
 
 		const papertrailKey = config.papertrailKey
@@ -63,7 +68,12 @@ class Logger {
 				let data = types[type]
 				if (data.hasOwnProperty("highlight") && args.length && typeof args[0] === "string") args[0] = data.highlight(args[0])
 				if (prefix) args.unshift(prefix)
-
+				if (this.suffix) {
+					if (this.customSuffix) {
+						let suffix = this.customSuffix.replace(/\{type\}/gi, type).replace(/\{name\}/gi, this.name)
+						args.push(suffix)
+					} else args.push(`@ ${this.name} [${type}]`)
+				}
 				if (type == "deprecated") console.log.apply(console, args)
 				else if (type == "debug" && this._debug == false) return
 				else if (type == "inspect") return console.log(util.inspect(args[0], inspectOptions))
@@ -74,11 +84,16 @@ class Logger {
 
 		function format(type) {
 			let {color} = types[type]
-			
 		}
 
 	}
 }
+
+
+let logger = new Logger("booper")
+
+console.log(logger)
+logger.log("test")
 
 
 

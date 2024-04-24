@@ -2,7 +2,7 @@
 
 // test-v3.js
 
-require("dotenv").config({path: "../.env"})
+// require("dotenv").config({path: "../.env"})
 const Logger = require("../src/Logger-v2.js")
 const logger = new Logger(__filename, {usePapertrail: true, papertrailKey: process.env.PAPERTRAIL_KEY})
 

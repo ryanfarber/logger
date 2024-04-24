@@ -1,11 +1,11 @@
 {
   "name": "@ryanforever/logger",
-  "version": "6.0.4",
+  "version": "6.0.5",
   "description": "simple logger",
   "main": "index.js",
   "dependencies": {
     "ansi-styles": "^4.3.0",
-    "axios": "^1.6.5",
+    "axios": "^1.6.8",
     "chalk": "^4.1.2",
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",

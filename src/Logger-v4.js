@@ -50,7 +50,9 @@ class Logger {
 
 				// apply style
 				if (style) {
-					for (let [key, val] of Object.entries(arguments)) arguments[key] = style(val)
+					for (let [key, val] of Object.entries(arguments)) {
+						if (typeof val === "string") arguments[key] = style(val)
+					}
 				}
 
 				let args = Array.prototype.slice.call(arguments)
@@ -73,6 +75,7 @@ class Logger {
 					args.push(suffix)
 				}
 				if (settings.timestamp) args.push(`@ ${new Date(Date.now()).toLocaleString()}`)
+
 				console[type].apply(console, args)
 			}
 		}

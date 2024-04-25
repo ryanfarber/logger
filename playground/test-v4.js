@@ -18,3 +18,6 @@ logger.warn("warning")
 logger.error("error")
 logger.debug("debug")
 
+
+
+logger.log({hey: {there: "world", how: {are: {you: {doing: "?"}}}}})

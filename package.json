@@ -1,6 +1,6 @@
 {
   "name": "@ryanforever/logger",
-  "version": "6.0.6",
+  "version": "6.0.7",
   "description": "simple logger",
   "main": "index.js",
   "dependencies": {
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/ryanfarber/logger#readme",
   "devDependencies": {
+    "@ryanforever/logger": "^6.0.5",
     "dotenv": "^16.3.1"
   },
   "keywords": [

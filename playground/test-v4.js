@@ -2,7 +2,8 @@
 
 
 
-const Logger = require("../src").v4
+// const Logger = require("../src").v4
+const Logger = require("@ryanforever/logger").v4
 const logger = new Logger("test", {debug: true})
 
 

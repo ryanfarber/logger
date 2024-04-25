@@ -6,6 +6,10 @@ const chalk = require("chalk")
 const {styles, colors} = require("./templates.js")
 
 
+
+
+
+
 class Logger {
 	constructor(name, config = {}) {
 
@@ -50,9 +54,9 @@ class Logger {
 				}
 
 				let args = Array.prototype.slice.call(arguments)
+				
 				if (this.config.prefix) {
-					console.log(this)
-					
+
 					let prefix = parse(this.config.prefix)
 					if (style) prefix = style(prefix)
 					else prefix = styles.blue(prefix)
@@ -78,9 +82,8 @@ class Logger {
 			console.log(util.inspect(input, {depth: this.config.inspectDepth, maxArrayLength: this.config.inspectMaxArrayLength}))
 		}
 
-		const suffix = (type, style) => {
-			return chalk.dim(`@ ${this.name}/${type}`)
-		}
+		const suffix = (type, style) => chalk.dim(`@ ${this.name}/${type}`)
+
 
 		const parse = (template) => {
 			return template
@@ -91,11 +94,6 @@ class Logger {
 		function ts() {
 			return new Date(Date.now()).toLocaleString()
 		}
-
-
-		// function parse(input)
-
-
 	}
 }
 

@@ -2,10 +2,10 @@
 
 
 
-// const Logger = require("../src").v4
-const Logger = require("@ryanforever/logger").v4
+const Logger = require("../src").v4
+// const Logger = require("@ryanforever/logger").v4
 const logger = new Logger("test", {debug: true})
-
+const {log} = logger
 
 console.log(logger)
 
@@ -17,3 +17,4 @@ logger.info("info")
 logger.warn("warning")
 logger.error("error")
 logger.debug("debug")
+

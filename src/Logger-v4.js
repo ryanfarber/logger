@@ -23,6 +23,7 @@ class Logger {
 			inspectMaxArrayLength: config.inspectMaxArrayLength ?? null
 		}
 
+
 		let methods = [
 			{type: "log",},
 			{type: "info"},
@@ -33,7 +34,7 @@ class Logger {
 		]
 
 		this.name = name
-		const self = this
+		let settings = this.config
 
 		// parse name
 		if (this.name && this.name !== path.basename(this.name)) this.name = path.parse(this.name).name
@@ -47,7 +48,6 @@ class Logger {
 			this[type] = function() {
 				if (type == "debug" && !debug) return
 
-
 				// apply style
 				if (style) {
 					for (let [key, val] of Object.entries(arguments)) arguments[key] = style(val)
@@ -55,8 +55,8 @@ class Logger {
 
 				let args = Array.prototype.slice.call(arguments)
 				
-				if (self.config.prefix) {
-					let prefix = parse(this.config.prefix)
+				if (settings.prefix) {
+					let prefix = parse(settings.prefix)
 					if (style) prefix = style(prefix)
 					else prefix = styles.blue(prefix)
 					args.unshift(prefix)
@@ -67,18 +67,18 @@ class Logger {
 					else args.push(`[${method.type.toUpperCase()}]`)
 				}
 
-				if (self.config.suffix) {
-					let suffix = parse(this.config.suffix)
+				if (settings.suffix) {
+					let suffix = parse(settings.suffix)
 					if (style) suffix = style(suffix)
 					args.push(suffix)
 				}
-				if (this.config.timestamp) args.push(`@ ${new Date(Date.now()).toLocaleString()}`)
+				if (settings.timestamp) args.push(`@ ${new Date(Date.now()).toLocaleString()}`)
 				console[type].apply(console, args)
 			}
 		}
 
 		this.inspect = function(input) {
-			console.log(util.inspect(input, {depth: this.config.inspectDepth, maxArrayLength: this.config.inspectMaxArrayLength}))
+			console.log(util.inspect(input, {depth: settings.inspectDepth, maxArrayLength: settings.inspectMaxArrayLength}))
 		}
 
 		const suffix = (type, style) => chalk.dim(`@ ${this.name}/${type}`)

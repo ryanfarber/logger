@@ -33,7 +33,7 @@ class Logger {
 		]
 
 		this.name = name
-
+		const self = this
 
 		// parse name
 		if (this.name && this.name !== path.basename(this.name)) this.name = path.parse(this.name).name
@@ -55,8 +55,7 @@ class Logger {
 
 				let args = Array.prototype.slice.call(arguments)
 				
-				if (this.config.prefix) {
-
+				if (self.config.prefix) {
 					let prefix = parse(this.config.prefix)
 					if (style) prefix = style(prefix)
 					else prefix = styles.blue(prefix)
@@ -68,7 +67,7 @@ class Logger {
 					else args.push(`[${method.type.toUpperCase()}]`)
 				}
 
-				if (this.config.suffix) {
+				if (self.config.suffix) {
 					let suffix = parse(this.config.suffix)
 					if (style) suffix = style(suffix)
 					args.push(suffix)

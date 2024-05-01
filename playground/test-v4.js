@@ -17,6 +17,7 @@ logger.info("this is an info message")
 logger.warn("this is a warning message")
 logger.error("this is an error message")
 logger.debug("this is a debug message")
+logger.deprecated("this is a deprecated method")
 
 
 

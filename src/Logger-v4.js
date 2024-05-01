@@ -17,7 +17,7 @@ class Logger {
 		let debug = config.debug
 
 		this.config = {
-			prefix: config.prefix || `{name}:`,
+			prefix: config.prefix || `[name]`,
 			suffix: config.suffix,
 			timestamp: config.timestamp || false,
 			inspectDepth: config.inspectDepth ?? 10,
@@ -36,11 +36,12 @@ class Logger {
 		}
 
 		let methods = [
-			{type: "log",},
-			{type: "info"},
-			{type: "warn", suffix: true, style: chalk.bold.yellow},
-			{type: "error", suffix: true, style: chalk.bold.red},
-			{type: "debug", style: chalk.dim},
+			{type: "log", level: "log"},
+			{type: "info", level: "info"},
+			{type: "warn", level: "warn", suffix: true, style: chalk.bold.yellow},
+			{type: "error", level: "error", suffix: true, style: chalk.bold.red},
+			{type: "debug", level: "debug", style: chalk.dim},
+			{type: "deprecated", level: "warn", suffix: true, style: chalk.bold.yellow}
 			// {type: "inspect"}
 		]
 
@@ -54,6 +55,7 @@ class Logger {
 		// init methods
 		for (let method of methods) {
 			let type = method.type
+			let level = method.level
 			let style = method.style
 
 			this[type] = function() {
@@ -87,9 +89,9 @@ class Logger {
 				}
 				if (settings.timestamp) args.push(`@ ${new Date(Date.now()).toLocaleString()}`)
 
-				console[type].apply(console, args)
+				console[level].apply(console, args)
 
-				if (betterstackToken) logToBetterstack(args, type)
+				if (betterstackToken) logToBetterstack(args, level)
 			}
 		}
 
@@ -102,7 +104,6 @@ class Logger {
 			let data = []
 			args.forEach(arg => {
 				if (typeof arg === "object") arg = JSON.stringify(arg, 1)
-					console.log(arg)
 				data.push(arg)
 			})
 			data = data.join(" ")
@@ -111,7 +112,7 @@ class Logger {
 				message: data,
 				level
 			}).catch(err => {
-				console.error(`betterstack error`, err)
+				console.error(`BETTERSTRACK ERROR:`, err.message)
 			})
 		}
 

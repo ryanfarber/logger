@@ -10,6 +10,7 @@ const {styles, colors} = require("./templates.js")
 
 
 
+
 class Logger {
 	constructor(name, config = {}) {
 
@@ -23,6 +24,16 @@ class Logger {
 			inspectMaxArrayLength: config.inspectMaxArrayLength ?? null
 		}
 
+		const betterstackToken = config.betterstackToken
+
+		let axios = {}
+
+		if (betterstackToken) {
+			axios = require("axios").create({
+				baseURL: "https://in.logs.betterstack.com",
+				headers: {Authorization: `Bearer ${betterstackToken}`}
+			})
+		}
 
 		let methods = [
 			{type: "log",},
@@ -77,12 +88,33 @@ class Logger {
 				if (settings.timestamp) args.push(`@ ${new Date(Date.now()).toLocaleString()}`)
 
 				console[type].apply(console, args)
+
+				if (betterstackToken) logToBetterstack(args, type)
 			}
 		}
 
 		this.inspect = function(input) {
 			console.log(util.inspect(input, {depth: settings.inspectDepth, maxArrayLength: settings.inspectMaxArrayLength}))
 		}
+
+
+		async function logToBetterstack(args, level) {
+			let data = []
+			args.forEach(arg => {
+				if (typeof arg === "object") arg = JSON.stringify(arg, 1)
+					console.log(arg)
+				data.push(arg)
+			})
+			data = data.join(" ")
+			axios.post("/", {
+				dt: Date.now(),
+				message: data,
+				level
+			}).catch(err => {
+				console.error(`betterstack error`, err)
+			})
+		}
+
 
 		const suffix = (type, style) => chalk.dim(`@ ${this.name}/${type}`)
 

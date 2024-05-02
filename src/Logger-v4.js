@@ -17,7 +17,7 @@ class Logger {
 		let debug = config.debug
 
 		this.config = {
-			prefix: config.prefix || `[name]`,
+			prefix: config.prefix || `[{name}]`,
 			suffix: config.suffix,
 			timestamp: config.timestamp || false,
 			inspectDepth: config.inspectDepth ?? 10,
